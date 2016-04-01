@@ -18,25 +18,25 @@ package org.knowm.xchart.internal.chartpart;
 
 import java.awt.Graphics2D;
 
-import org.knowm.xchart.CategorySeries;
-import org.knowm.xchart.CategorySeries.CategorySeriesRenderStyle;
+import org.knowm.xchart.Series_Category;
+import org.knowm.xchart.Series_Category.ChartCategorySeriesRenderStyle;
+import org.knowm.xchart.Styler_Category;
 import org.knowm.xchart.internal.Series;
-import org.knowm.xchart.style.AxesChartStyler;
-import org.knowm.xchart.style.CategoryStyler;
+import org.knowm.xchart.internal.style.Styler_AxesChart;
 
 /**
  * @author timmolter
  */
-public class Plot_Category<ST extends AxesChartStyler, S extends Series> extends Plot_AxesChart {
+public class Plot_Category<ST extends Styler_AxesChart, S extends Series> extends Plot_AxesChart {
 
-  CategoryStyler stylerCategory;
+  Styler_Category stylerCategory;
 
   /**
    * Constructor
    *
    * @param chart
    */
-  public Plot_Category(Chart<CategoryStyler, CategorySeries> chart) {
+  public Plot_Category(Chart<Styler_Category, Series_Category> chart) {
 
     super(chart);
     stylerCategory = chart.getStyler();
@@ -45,12 +45,12 @@ public class Plot_Category<ST extends AxesChartStyler, S extends Series> extends
   @Override
   public void paint(Graphics2D g) {
 
-    if (CategorySeriesRenderStyle.Bar.equals(stylerCategory.getDefaultSeriesRenderStyle()) || CategorySeriesRenderStyle.Stick.equals(stylerCategory.getDefaultSeriesRenderStyle())) {
+    if (ChartCategorySeriesRenderStyle.Bar.equals(stylerCategory.getDefaultSeriesRenderStyle()) || ChartCategorySeriesRenderStyle.LinkedBar.equals(stylerCategory.getDefaultSeriesRenderStyle()) || ChartCategorySeriesRenderStyle.Stick.equals(stylerCategory.getDefaultSeriesRenderStyle())) {
 
-      this.plotContent = new PlotContent_Category_Bar<CategoryStyler, CategorySeries>(chart);
+      this.plotContent = new PlotContent_Category_Bar<Styler_Category, Series_Category>(chart);
     }
     else {
-      this.plotContent = new PlotContent_Category_Line_Area_Scatter<CategoryStyler, CategorySeries>(chart);
+      this.plotContent = new PlotContent_Category_Line_Area_Scatter<Styler_Category, Series_Category>(chart);
     }
 
     super.paint(g);
