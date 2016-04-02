@@ -43,6 +43,8 @@ public class CategorySeries extends Series_AxesChart {
     Bar(LegendRenderType.Box),
 
     Stick(LegendRenderType.Line);
+    
+    LinkedBar(LegendRenderType.Box);
 
     private final LegendRenderType legendRenderType;
 
